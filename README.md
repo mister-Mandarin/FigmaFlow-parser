@@ -1,17 +1,20 @@
-# Спринт 1. Коннект к Figma API и выгрузка дерева документа
+## Переменные окружения
 
-**Цель:** Скрипт получает JSON-структуру макета из Figma API и сохраняет в файл.
+Использую [Streamlit Secrets](https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/secrets-management).
 
-## Задачи
+### Локально
 
-1. Создать проект с venv, `main.py`, `.env`
-2. В `.env` сохранить: `FIGMA_TOKEN` и `FILE_KEY`
-3. Реализовать GET-запрос к `https://api.figma.com/v1/files/{FILE_KEY}` с токен в заголовке `X-Figma-Token`
-4. Обработать ошибки (сеть, 401, 404)
-5. Сохранить JSON в `figma_dump.json`
-
-## Зависимости
+Секреты сохраняются в файле `secrets.toml`.
 
 ```bash
-pip install requests python-dotenv
+.streamlit/secrets.toml
 ```
+
+### Streamlit Cloud
+
+`App Settings → Secrets` → вставить содержимое `secrets.toml.example` с реальными значениями.
+
+| Переменная    | Откуда                          |
+| ------------- | ------------------------------- |
+| `FIGMA_TOKEN` | Figma → Personal access tokens  |
+| `APP_ENV`     | `dev` локально, `prod` в облаке |
