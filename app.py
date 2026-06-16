@@ -25,14 +25,13 @@ if "final_data" not in st.session_state:
 if st.session_state.ready_data is None:
     stage_1_get()
 
-if st.session_state.ready_data and not st.session_state.run_generation:
+if st.session_state.ready_data is not None and not st.session_state.run_generation:
     stage_2_edit()
     if st.session_state.show_confirm:
         show_confirm_panel()
     elif st.button("📥 Сформировать Word", type="primary"):
         st.session_state.show_confirm = True
         st.rerun()
-
 
 if st.session_state.run_generation:
     generate_word_live()

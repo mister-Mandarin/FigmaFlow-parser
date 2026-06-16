@@ -20,16 +20,10 @@ def stage_1_get():
                     st.write("📥 Получаю структуру из Figma...")
                     random_sleep()
                     app_config.parse_link_url(figma_input)
-                    st.write(
-                        f"✅ Ссылка распознана, ключ файла {app_config.FigmaFileKey}!"
-                    )
+                    st.write(f"✅ Ссылка распознана, ключ файла {app_config.FigmaFileKey}")
                 except ValueError:
-                    status.update(
-                        label="Ошибка в ссылке!", state="error", expanded=True
-                    )
-                    st.error(
-                        "Кажется, ссылка неправильная. Проверь, скопирована ли она полностью."
-                    )
+                    status.update(label="Ошибка в ссылке!", state="error", expanded=True)
+                    st.error("Кажется, ссылка неправильная. Проверь, скопирована ли она полностью.")
                     st.stop()
 
                 st.write("🔍 Получаю все данные из файла Figma...")
@@ -56,10 +50,5 @@ def stage_1_get():
                 # прогресс-бар
                 progress_bar = st.progress(0)
 
-                st.session_state.final_data = get_final_data(
-                    articles_data, progress_bar
-                )
-
-                status.update(
-                    label="Данные успешно загружены!", state="complete", expanded=False
-                )
+                st.session_state.ready_data = get_final_data(articles_data, progress_bar)
+                status.update(label="Данные успешно загружены!", state="complete", expanded=False)

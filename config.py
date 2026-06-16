@@ -5,7 +5,7 @@ import streamlit as st
 
 def _require(key: str) -> str:
     # Локально — из .streamlit/secrets.toml, в облаке — из Streamlit Secrets
-    value = st.secrets.get(key)
+    value = st.secrets[key]
     if not value:
         raise EnvironmentError(f"Обязательная переменная окружения не задана: {key}")
     return value
